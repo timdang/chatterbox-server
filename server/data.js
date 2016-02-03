@@ -1,3 +1,3 @@
 exports.data = {
-	results : []
+  results: []
 };

@@ -20,7 +20,7 @@ app.init = function() {
       }
     });
     $('#room-name').append('<option>New Room<option>');
-  }, '?order=-createdAt');
+  }, '/classes/room1');
 
   // Collect username from initial load
   app.username = window.location.search.slice(window.location.search.indexOf('=') + 1);
@@ -77,7 +77,7 @@ app.escaped = function(string) {
 
 app.send = function(message, callback) {
   $.ajax({
-    url: app.server,
+    url: app.server + '/classes/room1',
     type: 'POST',
     data: JSON.stringify(message),
     contentType: 'application/json',
@@ -93,7 +93,7 @@ app.send = function(message, callback) {
 
 app.fetch = function(callback, queryParams) {
   $.ajax({
-    url: queryParams === undefined ? app.server : app.server + queryParams,
+    url: queryParams === undefined ? app.server + '/classes/room1' : app.server + queryParams,
     type: 'GET',
     contentType: 'application/json',
     success: function(data) {
@@ -117,7 +117,7 @@ app.addMessage = function(username, text, roomname) {
     roomname: roomname
   }, function(data) {
     app.clearMessages();
-    app.fetch(app.populate, '?order=-createdAt');
+    app.fetch(app.populate, '/classes/room1');
     $('#message-text').val('');
   });
 };
